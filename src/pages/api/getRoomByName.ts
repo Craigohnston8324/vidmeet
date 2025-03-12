@@ -69,9 +69,21 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 }
 
 const getReferralCode = async (userId: string) => {
-  const referral = await prisma.referralCode.findFirst({
-    where: { userId },
-    orderBy: { createdAt: "desc" },
+  if (!prisma) return null;
+
+  const referralRecords = await prisma.referralCode.findMany({
+    where: {
+      userId,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: 1,
   });
-  return referral?.referralCode || null;
+
+  if (referralRecords[0]) {
+    return referralRecords[0].referralCode;
+  }
+
+  return null;
 };
