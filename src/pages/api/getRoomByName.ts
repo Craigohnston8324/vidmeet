@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
-import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import type { Participant } from "@prisma/client";
+import prisma from "@/lib/prisma";
 
 const schema = z.object({
   roomName: z.string(),

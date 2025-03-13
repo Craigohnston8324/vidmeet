@@ -13,12 +13,12 @@ interface Props extends React.PropsWithChildren {
 export function NavBar({ title, small, iconFull, children }: Props) {
   return (
     <header className={clsx(styles.container, small && styles.small)}>
-      <Link
-        href="/"
+      <a
+        rel="noreferrer"
         className={styles.link}
       >
         {small && !iconFull ? <LogoSmallIcon /> : <LogoIcon />}
-      </Link>
+      </a>
 
       {title && <h2>{title}</h2>}
 

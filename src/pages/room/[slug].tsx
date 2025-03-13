@@ -85,6 +85,7 @@ const RoomWrapper: NextPage<Props> = ({
   const onDisconnected = async () => {
     if (isAdmin) {
       await axios.post("/api/deleteRoom", { slug, identity });
+      return void router.push("/createroom");
     }
 
     void router.push("/");

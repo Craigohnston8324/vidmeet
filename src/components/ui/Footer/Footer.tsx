@@ -6,9 +6,10 @@ import { isMobileBrowser } from "@dtelecom/components-core";
 export const Footer = () => {
   const isMobile = React.useMemo(() => isMobileBrowser(), []);
 
+
   return (
     <div className={styles.container}>
-      <div >
+      <div>
         Powered by
         <DtelecomIcon />
       </div>

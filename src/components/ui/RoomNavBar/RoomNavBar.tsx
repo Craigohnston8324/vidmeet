@@ -27,7 +27,7 @@ export const RoomNavBar = ({ slug, roomName, iconFull }: RoomNavBarProps) => {
   const [copied, setCopied] = useState(false);
   const copy = async () => {
     const url = encodeURI(
-      `${window.location.origin}/join/${slug}?roomName=${roomName}`
+      `${roomName}`
     );
     await navigator.clipboard.writeText(url);
     setCopied(true);

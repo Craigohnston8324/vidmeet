@@ -17,10 +17,8 @@ import { useSession } from "next-auth/react";
 export default function IndexPage() {
   const [roomName, setRoomName] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<boolean>(false); // состояние ошибки
   const { push } = useRouter();
   const { status } = useSession();
-
   const onCreate = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -28,10 +26,9 @@ export default function IndexPage() {
 
     try {
       setIsLoading(true);
-      const { data } = await axios.post<{ identity: string; slug: string }>(
-        "/api/createRoom",
-        { roomName }
-      );
+      const { data } = await axios.get<{ identity: string; slug: string }>("/api/getRoomByName", {
+        params: { roomName } 
+      });
       setIdentity(data.slug, data.identity);
       await push({
         pathname: `/join/${data.slug}`,
@@ -41,7 +38,6 @@ export default function IndexPage() {
       });
     } catch (e) {
       console.error(e);
-      setError(true); // устанавливаем ошибку
     }
 
     setIsLoading(false);
@@ -73,9 +69,7 @@ export default function IndexPage() {
             value={roomName}
             setValue={setRoomName}
             startIcon={<KeyIcon />}
-            error={error} // передаем ошибку в Input
           />
-          {error && <p className={styles.errorText}>Room name already exists.</p>} {/* текст ошибки */}
           <Button
             type={"submit"}
             variant={"default"}
@@ -83,7 +77,7 @@ export default function IndexPage() {
             className={styles.button}
             disabled={!roomName || isLoading}
           >
-            Start
+            Join room
           </Button>
         </form>
       </div>
