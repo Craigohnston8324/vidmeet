@@ -105,6 +105,8 @@ const JoinRoomPage = ({ slug, roomName: name }: Props) => {
         {!isMobile && participantsCount !== undefined && (
           <ParticipantsBadge count={participantsCount} />
         )}
+        <div style={{ marginLeft: "8px" }} />
+        {hasWallets && <CustomConnectButton />}
       </NavBar>
 
       <div className={styles.container}>

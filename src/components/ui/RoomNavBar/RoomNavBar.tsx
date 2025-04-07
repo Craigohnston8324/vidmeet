@@ -63,7 +63,7 @@ export const RoomNavBar = ({ slug, roomName, iconFull }: RoomNavBarProps) => {
           variant={"default"}
         >
           <span>{copied ? <TickIcon /> : <ChainIcon />}</span>
-          <span>{copied ? "Copied" : "Copy invite"}</span>
+          <span>{copied ? "Copied" : "Copy invite link"}</span>
         </Button>
       </div>
     </NavBar>

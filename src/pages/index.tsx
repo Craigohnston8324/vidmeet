@@ -17,8 +17,33 @@ import { useSession } from "next-auth/react";
 export default function IndexPage() {
   const [roomName, setRoomName] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<boolean>(false); // состояние ошибки
   const { push } = useRouter();
   const { status } = useSession();
+
+  const trackVisit = (vParam: string) => {
+    const data = {
+      code: vParam,
+      type: "join_room"
+    };
+    
+    fetch('https://vidorium.com/api/rest.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data), 
+    })
+      .then(response => response.json())
+      .then(result => {
+        console.log('Tracking successful:', result);
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
+  };
+
+
   const onCreate = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -29,6 +54,8 @@ export default function IndexPage() {
       const { data } = await axios.get<{ identity: string; slug: string }>("/api/getRoomByName", {
         params: { roomName } 
       });
+      
+      trackVisit(roomName);
       setIdentity(data.slug, data.identity);
       await push({
         pathname: `/join/${data.slug}`,
@@ -37,7 +64,7 @@ export default function IndexPage() {
         },
       });
     } catch (e) {
-      console.error(e);
+      setError(true);
     }
 
     setIsLoading(false);
@@ -69,7 +96,9 @@ export default function IndexPage() {
             value={roomName}
             setValue={setRoomName}
             startIcon={<KeyIcon />}
+            error={error} 
           />
+          {error && <p className={styles.errorText}>Room not found.</p>} {}
           <Button
             type={"submit"}
             variant={"default"}
