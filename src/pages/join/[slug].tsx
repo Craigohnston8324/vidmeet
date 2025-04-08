@@ -106,7 +106,6 @@ const JoinRoomPage = ({ slug, roomName: name }: Props) => {
           <ParticipantsBadge count={participantsCount} />
         )}
         <div style={{ marginLeft: "8px" }} />
-        {hasWallets && <CustomConnectButton />}
       </NavBar>
 
       <div className={styles.container}>
