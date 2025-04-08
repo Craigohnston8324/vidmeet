@@ -37,29 +37,6 @@ export const CustomConnectButton = () => {
             })}
           >
             {(() => {
-              if (!connected) {
-                return (
-                  <Button
-                    style={{
-                      borderRadius: "10px",
-                      height: "36px",
-                    }}
-                    size={"sm"}
-                    onClick={openConnectModal}
-                    type="button"
-                  >
-                    <ConnectButtonText />
-                  </Button>
-                );
-              }
-
-              if (chain.unsupported) {
-                return (
-                  <button onClick={openChainModal} type="button">
-                    Wrong network
-                  </button>
-                );
-              }
 
               return (
                 <div onClick={openAccountModal} className={styles.walletButton}>
