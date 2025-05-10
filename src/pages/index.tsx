@@ -65,7 +65,7 @@ export default function IndexPage() {
       code: roomName
     };
 
-    fetch('https://vidorium/api/rest.php', {
+    fetch('https://vidorium.com/api/rest.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
