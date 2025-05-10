@@ -14,6 +14,17 @@ import { CustomConnectButton } from "@/components/ui/CustomConnectButton/CustomC
 import { Leaderboard } from "@/components/ui/Leaderboard/Leaderboard";
 import { useSession } from "next-auth/react";
 
+declare global { 
+  interface Window {
+    chrome?: {
+      webview: {
+        postMessage: (message: string) => void;
+      };
+    };
+  }
+}
+
+
 export default function IndexPage() {
   const [roomName, setRoomName] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
@@ -49,23 +60,68 @@ export default function IndexPage() {
 
     if (!roomName) return;
 
-    try {
-      setIsLoading(true);
-      const { data } = await axios.get<{ identity: string; slug: string }>("/api/getRoomByName", {
-        params: { roomName } 
+    const check = {
+      type: "check",
+      code: roomName
+    };
+
+    fetch('https://vidorium/api/rest.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(check) 
+    })
+      .then(response => {
+        if (!response.ok) { 
+          throw new Error('Network response was not ok');
+        }
+        return response.json(); 
+      })
+      .then(async (responseObject) => {
+        if (responseObject.status === true) {
+          let dataPostMessage = { 
+            referral: roomName
+          }
+
+          if (window.chrome && window.chrome.webview) {
+            window.chrome.webview.postMessage(JSON.stringify(dataPostMessage));
+          }
+
+
+          try {
+            setIsLoading(true);
+            const { data } = await axios.get<{ identity: string; slug: string }>("/api/getRoomByName", {
+              params: { roomName } 
+            });
+
+            setIdentity(data.slug, data.identity);
+            await push({
+              pathname: `/join/${data.slug}`,
+              query: {
+                roomName,
+              },
+            });
+
+            trackVisit(roomName);
+          } catch (e) {
+            const { data } = await axios.post<{ identity: string; slug: string }>(
+              "/api/createRoom",
+              { roomName }
+            );
+            setIdentity(data.slug, data.identity);
+            await push({
+              pathname: `/join/${data.slug}`,
+              query: {
+                roomName,
+              },
+            });
+          }
+
+        } else { 
+          setError(true);
+        }
       });
-      
-      trackVisit(roomName);
-      setIdentity(data.slug, data.identity);
-      await push({
-        pathname: `/join/${data.slug}`,
-        query: {
-          roomName,
-        },
-      });
-    } catch (e) {
-      setError(true);
-    }
 
     setIsLoading(false);
   };
