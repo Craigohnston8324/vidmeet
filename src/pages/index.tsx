@@ -38,7 +38,7 @@ export default function IndexPage() {
       type: "join_room"
     };
     
-    fetch('https://vidorium.com/api/rest.php', {
+    fetch('https://vidorium.io/api/rest.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ export default function IndexPage() {
       code: roomName
     };
 
-    fetch('https://vidorium.com/api/rest.php', {
+    fetch('https://vidorium.io/api/rest.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
