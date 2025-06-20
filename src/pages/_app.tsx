@@ -118,7 +118,7 @@ const MyApp = ({
   return (
     <>
       <Head>
-        <title>Vidorium | Web3 Meeting App</title>
+        <title>Vironect | Web3 Meeting App</title>
       </Head>
 
       <WagmiConfig config={config}>

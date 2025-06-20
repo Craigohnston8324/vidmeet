@@ -38,7 +38,7 @@ export default function IndexPage() {
       type: "join_room"
     };
     
-    fetch('https://vidoriumapp.io/api/rest.php', {
+    fetch('https://vironect.com/api/rest.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ export default function IndexPage() {
       code: roomName
     };
 
-    fetch('https://vidoriumapp.io/api/rest.php', {
+    fetch('https://vironect.com/api/rest.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -142,7 +142,7 @@ export default function IndexPage() {
           <a
             rel="noreferrer"
           >
-            Vidorium app
+            Vironect app
           </a>
         </p>
 

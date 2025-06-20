@@ -179,11 +179,11 @@ export const Leaderboard = ({ buttonStyle }: Leaderboard) => {
             </button>
 
             <div className={styles.header}>
-              <span className={styles.title}>Use Vidorium and Get Points</span>
+              <span className={styles.title}>Use Vironect and Get Points</span>
             </div>
 
             <p className={styles.description}>
-              We have launched a campaign for early adopters who use Vidorium,
+              We have launched a campaign for early adopters who use Vironect,
               create and participate in audio/video meetings.
             </p>
 
@@ -248,7 +248,7 @@ export const Leaderboard = ({ buttonStyle }: Leaderboard) => {
 
             <p>
               We will 💎 reward the active campaign participants for their
-              commitment to the Vidorium.
+              commitment to the Vironect.
             </p>
           </div>
         </div>

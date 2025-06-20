@@ -63,7 +63,7 @@ export default function IndexPage() {
           <a
             rel="noreferrer"
           >
-            Vidorium app
+            Vironect app
           </a>
         </p>
 

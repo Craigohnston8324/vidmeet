@@ -8,10 +8,10 @@ class MyDocument extends Document {
         <Head>
           <meta
             property="description"
-            content="Vidorium is a free, open-source web app for audio/video conferences with a built-in Al translator. Create meetings, Invite friends, & Earn points. Powered by Vidorium."
+            content="Vironect is a free, open-source web app for audio/video conferences with a built-in Al translator. Create meetings, Invite friends, & Earn points. Powered by Vironect."
           />
 
-          <meta property="og:site_name" content="Vidorium | Web3 Meeting App" />
+          <meta property="og:site_name" content="Vironect | Web3 Meeting App" />
 
           <meta property="og:image:type" content="image/png" />
 
