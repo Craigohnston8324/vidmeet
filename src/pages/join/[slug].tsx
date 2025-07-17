@@ -57,44 +57,34 @@ const JoinRoomPage = ({ slug, roomName: name }: Props) => {
     }
 
     async function fetchWsUrl() {
+      console.log('=== Calling /api/getWsUrl ===');
+      console.time('API Call Duration');
+      
       try {
+        console.log('Making request to /api/getWsUrl');
         const { data } = await axios.get<IGetWsUrl>(`/api/getWsUrl`);
+        
+        console.log('API Response:', data);
+        console.log('WebSocket URL:', data.wsUrl);
+        
         setWsUrl(data.wsUrl);
-      } catch (error: unknown) {
-        console.error('Error fetching WS URL:', error);
-    
+      } catch (error) {
+        console.error('API Call Failed:', error);
+        
         if (axios.isAxiosError(error)) {
-          console.error('Axios error:', error.message);
-          
-          if (error.response) {
-            // Server responded with a status code outside 2xx
-            console.error('Response data:', error.response.data);
-            console.error('Status:', error.response.status);
-            
-            // You can access the response data safely now
-            const responseData = error.response.data as Partial<IGetWsUrl>; // Type assertion if needed
-            if ('wsUrl' in responseData) {
-              // Handle case where server might return wsUrl even with error
-              setWsUrl(responseData.wsUrl!);
-            }
-          } else if (error.request) {
-            // Request was made but no response received
-            console.error('No response received:', error.request);
-          } else {
-            // Something happened in setting up the request
-            console.error('Request setup error:', error.message);
-          }
-        } else if (error instanceof Error) {
-          // Handle native Error objects
-          console.error('Native error:', error.message);
-        } else {
-          // Handle cases where error is not an Error object (rare)
-          console.error('Completely unknown error:', error);
+          console.error('Axios Error Details:', {
+            message: error.message,
+            code: error.code,
+            status: error.response?.status,
+            responseData: error.response?.data,
+          });
         }
       } finally {
+        console.timeEnd('API Call Duration');
         setIsLoading(false);
       }
     }
+    
 
     void fetchRoom();
     void fetchWsUrl();
