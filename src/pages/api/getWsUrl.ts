@@ -13,7 +13,7 @@ export default async function handler(
   const clientIp = requestIp.getClientIp(req) || undefined;
   const token = new AccessToken();
   const wsUrl = await token.getWsUrl(clientIp);
-  console.log(wsUrl, clientIp)
+
   res.status(200).json({
     wsUrl,
     clientIp: clientIp || null,

@@ -59,7 +59,10 @@ const JoinRoomPage = ({ slug, roomName: name }: Props) => {
     async function fetchWsUrl() {
       try {
         const { data } = await axios.get<IGetWsUrl>(`/api/getWsUrl`);
+        console.log(data)
         setWsUrl(data.wsUrl);
+      } catch (error) {
+        console.error('Error fetching WS URL:', error);
       } finally {
         setIsLoading(false);
       }
