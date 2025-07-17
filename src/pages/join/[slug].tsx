@@ -59,10 +59,38 @@ const JoinRoomPage = ({ slug, roomName: name }: Props) => {
     async function fetchWsUrl() {
       try {
         const { data } = await axios.get<IGetWsUrl>(`/api/getWsUrl`);
-        console.log(data)
         setWsUrl(data.wsUrl);
-      } catch (error) {
+      } catch (error: unknown) {
         console.error('Error fetching WS URL:', error);
+    
+        if (axios.isAxiosError(error)) {
+          console.error('Axios error:', error.message);
+          
+          if (error.response) {
+            // Server responded with a status code outside 2xx
+            console.error('Response data:', error.response.data);
+            console.error('Status:', error.response.status);
+            
+            // You can access the response data safely now
+            const responseData = error.response.data as Partial<IGetWsUrl>; // Type assertion if needed
+            if ('wsUrl' in responseData) {
+              // Handle case where server might return wsUrl even with error
+              setWsUrl(responseData.wsUrl!);
+            }
+          } else if (error.request) {
+            // Request was made but no response received
+            console.error('No response received:', error.request);
+          } else {
+            // Something happened in setting up the request
+            console.error('Request setup error:', error.message);
+          }
+        } else if (error instanceof Error) {
+          // Handle native Error objects
+          console.error('Native error:', error.message);
+        } else {
+          // Handle cases where error is not an Error object (rare)
+          console.error('Completely unknown error:', error);
+        }
       } finally {
         setIsLoading(false);
       }
