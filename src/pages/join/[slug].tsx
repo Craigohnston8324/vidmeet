@@ -57,34 +57,13 @@ const JoinRoomPage = ({ slug, roomName: name }: Props) => {
     }
 
     async function fetchWsUrl() {
-      console.log('=== Calling /api/getWsUrl ===');
-      console.time('API Call Duration');
-      
       try {
-        console.log('Making request to /api/getWsUrl');
         const { data } = await axios.get<IGetWsUrl>(`/api/getWsUrl`);
-        
-        console.log('API Response:', data);
-        console.log('WebSocket URL:', data.wsUrl);
-        
         setWsUrl(data.wsUrl);
-      } catch (error) {
-        console.error('API Call Failed:', error);
-        
-        if (axios.isAxiosError(error)) {
-          console.error('Axios Error Details:', {
-            message: error.message,
-            code: error.code,
-            status: error.response?.status,
-            responseData: error.response?.data,
-          });
-        }
       } finally {
-        console.timeEnd('API Call Duration');
         setIsLoading(false);
       }
     }
-    
 
     void fetchRoom();
     void fetchWsUrl();
