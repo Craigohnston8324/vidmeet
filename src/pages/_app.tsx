@@ -118,7 +118,7 @@ const MyApp = ({
   return (
     <>
       <Head>
-        <title>Vironect | Web3 Meeting App</title>
+        <title>Vaironex | Web3 Meeting App</title>
       </Head>
 
       <WagmiConfig config={config}>

@@ -8,10 +8,10 @@ class MyDocument extends Document {
         <Head>
           <meta
             property="description"
-            content="Vironect is a free, open-source web app for audio/video conferences with a built-in Al translator. Create meetings, Invite friends, & Earn points. Powered by Vironect."
+            content="Vaironex is a free, open-source web app for audio/video conferences with a built-in Al translator. Create meetings, Invite friends, & Earn points. Powered by Vaironex."
           />
 
-          <meta property="og:site_name" content="Vironect | Web3 Meeting App" />
+          <meta property="og:site_name" content="Vaironex | Web3 Meeting App" />
 
           <meta property="og:image:type" content="image/png" />
 

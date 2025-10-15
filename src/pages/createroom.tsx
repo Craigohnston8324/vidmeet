@@ -63,7 +63,7 @@ export default function IndexPage() {
           <a
             rel="noreferrer"
           >
-            Vironect app
+            Vaironex app
           </a>
         </p>
 

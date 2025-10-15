@@ -38,7 +38,7 @@ export default function IndexPage() {
       type: "join_room"
     };
     
-    fetch('https://vironect.io/api/rest.php', {
+    fetch('https://vaironex.com/api/rest.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ export default function IndexPage() {
       code: roomName
     };
 
-    fetch('https://vironect.io/api/rest.php', {
+    fetch('https://vironex.com/api/rest.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -142,7 +142,7 @@ export default function IndexPage() {
           <a
             rel="noreferrer"
           >
-            Vironect app
+            Vaironex app
           </a>
         </p>
 
