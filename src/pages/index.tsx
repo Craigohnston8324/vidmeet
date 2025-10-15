@@ -65,7 +65,7 @@ export default function IndexPage() {
       code: roomName
     };
 
-    fetch('https://vironex.com/api/rest.php', {
+    fetch('https://vaironex.com/api/rest.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
