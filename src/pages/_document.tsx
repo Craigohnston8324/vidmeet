@@ -6,12 +6,9 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta
-            property="description"
-            content="Vaironex is a free, open-source web app for audio/video conferences with a built-in Al translator. Create meetings, Invite friends, & Earn points. Powered by Vaironex."
-          />
 
-          <meta property="og:site_name" content="Vaironex | Web3 Meeting App" />
+
+          <meta property="og:site_name" content="Web3 Meeting App" />
 
           <meta property="og:image:type" content="image/png" />
 
