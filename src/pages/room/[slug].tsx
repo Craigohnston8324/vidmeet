@@ -100,7 +100,7 @@ const RoomWrapper: NextPage<Props> = ({
           options={roomOptions}
           video={preJoinChoices?.videoEnabled}
           audio={preJoinChoices?.audioEnabled}
-          onDisconnected={() => void onDisconnected()}
+          onDisconnected={() => null}
         >
           <div
             id="test-server-url"
